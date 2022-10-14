@@ -1,6 +1,6 @@
 You will need PHP8, Composer and Docker installed on your machine to run this.
 
-Clone this repository down locally, and run
+Clone this repository down locally, copy .env.example into .env, and run
 
  composer install
 
