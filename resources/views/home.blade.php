@@ -11,6 +11,6 @@
 
     </head>
     <body class="antialiased">
-		Register
+		Home
     </body>
 </html>
