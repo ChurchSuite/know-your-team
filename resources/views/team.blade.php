@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-	Register
+	New Team Form
 @stop

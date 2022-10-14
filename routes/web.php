@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('home'));
 Route::get('/register', fn() => view('register'));
+Route::get('/member', fn() => view('member'));
+Route::get('/team', fn() => view('team'));
+Route::get('/data', fn() => view('data'));

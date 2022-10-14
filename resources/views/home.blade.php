@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-  Home
+	Home
 @stop

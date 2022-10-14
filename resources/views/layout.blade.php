@@ -28,9 +28,7 @@
 					</div>
 					<div class="hidden md:flex md:flex-1 md:items-center md:justify-end">
 						<nav class="flex space-x-6">
-							<a href="/add-team-member" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Team member</a>
-							<a href="/add-team" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Team</a>
-							<a href="/data" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Data</a>
+							@include('partials.menu')
 						</nav>
 					</div>
 				</div>
@@ -54,9 +52,7 @@
 					</div>
 					<div class="py-6 px-5">
 						<div class="grid grid-cols-1 gap-4">
-							<a href="/add-team-member" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Team member</a>
-							<a href="/add-team" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Team</a>
-							<a href="/data" class="rounded-md text-base font-medium text-gray-700 hover:text-indigo-600">Data</a>
+							@include('partials.menu')
 						</div>
 					</div>
 				</div>
