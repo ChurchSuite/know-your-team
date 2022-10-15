@@ -3,7 +3,7 @@
 @section('content')
 	<x-page-section>
 		<x-page-title>
-			Add Member
+			Add User
 		</x-page-title>
 		<x-form-wrapper>
 			<x-form action="/api/user">

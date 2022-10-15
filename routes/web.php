@@ -16,7 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 |
 */
 
-Route::get('/', fn() => view('home'));
+Route::get('/', function(Request $request) {
+	try {
+		$organisationId = Session::get('organisation_id');
+		if (empty($organisationId)) throw new \Exception();
+		$organisation = Organisation::get($organisationId);
+		return view('organisation', ['organisation' => $organisation]);
+	} catch (\Exception $e) {
+		return view('register');
+	}
+});
 Route::get('/register', fn() => view('register'));
 Route::get('/user', fn() => view('user'));
 Route::get('/team', fn() => view('team'));
