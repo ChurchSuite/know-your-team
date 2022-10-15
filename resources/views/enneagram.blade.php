@@ -357,10 +357,11 @@
 		}
 	}
 </script>
-  <div class="p-8" x-data="enneagram()" x-init="fetchPeople()">
-    {{-- select --}}
+  <div class="p-8 space-y-4" x-data="enneagram()" x-init="fetchPeople()">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900">Enneagram</h2>
+	{{-- select --}}
 	<select x-on:change="setView($el.value)" x-model="view" class="mb-4 w-full sticky top-0 rounded-md border-gray-300">
-      <option value="people">Home</option>
+      <option value="people">Summary</option>
       <optgroup label="Number">
         <template x-for="type in types" :key="type.number" hidden>
           <option :value="`type.${type.number}`" x-text="`${type.number} - ${type.name}`"></option>

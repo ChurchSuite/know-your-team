@@ -288,9 +288,10 @@
 </script>
 
 
-<div x-data="workingGenius" x-init="fetchPeople">
+<div class="p-8 space-y-4" x-data="workingGenius()" x-init="fetchPeople()">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900">Working Genius</h2>
 		<select @change="setView($el.value)" x-model="view" class="mb-4 w-full sticky top-0 rounded-md border-gray-300">
-		  <option value="people">Home</option>
+		  <option value="people">Summary</option>
 		  <optgroup label="Geniuses">
 			<option value="genius.wonder">Wonder</option>
 			<option value="genius.invention">Invention</option>
