@@ -16,4 +16,8 @@ class OrganisationTest extends Model
     protected $guarded = [
         'organisation_id',
     ];
+
+	public function name(): string {
+		return ucwords(str_replace('_', ' ', $this->test_identifier));
+	}
 }

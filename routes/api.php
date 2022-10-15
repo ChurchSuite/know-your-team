@@ -112,6 +112,8 @@ Route::put('/organisation/{organisation:uuid}', function(Request $request, Organ
 
     // save to the database
 	$organisation->save();
+
+	return response()->json(['redirect' => '/']);
 });
 
 // POST /api/team
@@ -129,6 +131,8 @@ Route::post('/team', function(Request $request) {
 
     // save to the database
 	$team->save();
+
+	return response()->json(['redirect' => '/']);
 });
 
 // POST /api/submit
@@ -139,7 +143,7 @@ Route::post('/submit', function(Request $request) {
     ]);
 
     $user = User::where(['uuid' => $request->user_uuid])->first();
-    
+
     $resultJSON = json_encode($request->{$request->test_identifier});
 
     // delete any existing data for this personality test
@@ -173,7 +177,7 @@ Route::post('/user', function(Request $request) {
 		'last_name' => $request->last_name,
 		'email' => $request->email,
 		'job' => $request->job,
-		'profile_picture' => $request->profile_picture,
+		'profile_picture' => $request->profile_picture ?? '',
 	]);
 
     // fill guarded fields
@@ -183,4 +187,28 @@ Route::post('/user', function(Request $request) {
 
     // save to the database
 	$user->save();
+
+	return response()->json(['redirect' => '/']);
+});
+
+// PUT /api/user/:uuid
+Route::put('/user/{user:uuid}', function(Request $request, User $user) {
+    $request->validate([
+        'first_name' => 'required|string|max:50',
+        'last_name' => 'required|string|max:50',
+        'email' => 'required|email',
+        'job' => 'required|string|max:50',
+        'profile_picture' => 'url',
+    ]);
+
+	$user->first_name = $request->first_name;
+	$user->last_name = $request->last_name;
+	$user->email = $request->email;
+	$user->job = $request->job;
+	$user->profile_picture = $request->profile_picture ?? '';
+
+    // save to the database
+	$user->save();
+
+	return response()->json(['redirect' => '/']);
 });

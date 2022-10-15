@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Organisation;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,12 @@ Route::get('/', function(Request $request) {
 	}
 });
 Route::get('/register', fn() => view('register'));
-Route::get('/user', fn() => view('user'));
+Route::get('/user', fn() => view('user.create'));
+Route::get('/user/{user:uuid}', function(Request $request, User $user) {
+	return view('user.update', ['user' => $user]);
+});
+
+
 Route::get('/settings', function() {
 	$organisationId = Session::get('organisation_id');
 

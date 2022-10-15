@@ -6,7 +6,13 @@
 	<x-dashboard-widget-wrapper>
 		<x-dashboard-widget title="Test Results">
 			@foreach($organisation->tests as $test)
-				<li>{{ $test->test_identifier }}</li>
+				<div class="flex w-full items-center justify-between space-x-6 p-6">
+					<div class="flex-1 truncate">
+						<div class="flex items-center space-x-3">
+							<h3 class="truncate text-sm font-medium text-gray-900">{{ $test->name() }}</h3>
+						</div>
+					</div>
+				</div>
 			@endforeach
 		</x-dashboard-widget>
 	</x-dashboard-widget-wrapper>
@@ -17,8 +23,8 @@
 				<div class="relative">
 					<div class="flex w-full items-center justify-between space-x-6 p-6">
 						<div class="flex-1 truncate">
-							<div class="flex items-center space-x-3">
-								<h3 class="truncate text-sm font-medium text-gray-900">{{ $user->first_name }} {{ $user->last_name }}</h3>
+							<div class="flex items-baseline space-x-3">
+								<h3 class="truncate text-base font-medium text-gray-900">{{ $user->first_name }} {{ $user->last_name }}</h3>
 								<span class="space-x-1">
 									@foreach ($user->teams as $team)
 										@if ($team)
@@ -31,9 +37,21 @@
 						</div>
 						<img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="{{ $user->url }}" alt="">
 					</div>
-					<a href="#" class="absolute inset-0"></a>
+					<a href="/user/{{ $user->uuid }}" class="absolute inset-0"></a>
 				</div>
 			@endforeach
+			<x-slot name="actions">
+				<span class="isolate inline-flex rounded-md shadow-sm">
+					<button type="button" class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+						<svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
+						</svg>
+						Member
+					</button>
+					<button type="button" class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">12k</button>
+				</span>
+			</x-slot>
 		</x-dashboard-widget>
 
 	</x-dashboard-widget-wrapper>
@@ -49,6 +67,9 @@
 					</div>
 				</div>
 			@endforeach
+			<x-slot name="actions">
+				Actions
+			</x-slot>
 		</x-dashboard-widget>
 	</x-dashboard-widget-wrapper>
 </x-page-section>

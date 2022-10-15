@@ -40,7 +40,7 @@
 				{{-- Dropdown of tests --}}
 				<x-field-select label="Test" name="test_identifier">
 					@foreach ($organisation->tests as $test)
-						<option value="{{ $test->test_identifier }}">{{ ucwords(str_replace('_', ' ', $test->test_identifier)) }}</option>
+						<option value="{{ $test->test_identifier }}">{{ $test->name() }}</option>
 					@endforeach
 				</x-field-select>
 
