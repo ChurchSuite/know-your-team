@@ -1,0 +1,3 @@
+<select>
+	{{ $slot }}
+</select>

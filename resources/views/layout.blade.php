@@ -13,7 +13,7 @@
 			<div class="relative z-20">
 				<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 sm:py-4 md:justify-start md:space-x-10 lg:px-8">
 					<div>
-						<a href="#" class="flex">
+						<a href="/" class="flex">
 							<span class="sr-only">Your Company</span>
 							<img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
 						</a>
