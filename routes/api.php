@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Organisation;
+use App\Models\OrganisationTest;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,17 +29,24 @@ Route::post('/organisation', function(Request $request) {
         'email' => 'required|email',
         'job' => 'required|string|max:50',
         'profile_picture' => 'url',
+        'tests' => 'required', // check against enum
     ]);
 
-	$organisation = new Organisation([
-		'name' => $request->name,
-	]);
+	$organisation = new Organisation(['name' => $request->name]);
 
     // fill guarded fields
 	$organisation->uuid = Str::uuid();
 
     // save to the database
 	$organisation->save();
+
+    // store the test types in the database
+    collect($request->tests)
+        ->each(function ($test) use ($organisation) {
+            $test = new OrganisationTest(['test_identifier' => $test]);
+            $test->organisation_id = $organisation->id;
+            $test->save();
+        });
 
     // now create the user
     $user = new User([
