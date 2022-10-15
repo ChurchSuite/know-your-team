@@ -56,6 +56,8 @@ Route::post('/organisation', function(Request $request) {
 
     // save to the database
 	$user->save();
+
+    return redirect('/organisation/'.$organisation->uuid);
 });
 
 // POST /api/team

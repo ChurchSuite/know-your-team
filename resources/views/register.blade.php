@@ -15,7 +15,7 @@
 			<x-field-text label="Job / Title" name="job"/>
 			<x-form-divider></x-form-divider>
 			{{-- Personality Type Checkboxes --}}
-			<x-button-submit>Set it up!</x-button-submit>
+			<x-button-post>Set it up!</x-button-post>
 		</x-form>
 	</x-form-wrapper>
 </x-page-title>
