@@ -15,7 +15,7 @@
 					<div>
 						<a href="/" class="flex">
 							<span class="sr-only">Your Company</span>
-							<img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+							<img class="h-8 w-auto sm:h-10" src="/logo.svg" alt="">
 						</a>
 					</div>
 					<div class="-my-2 -mr-2 md:hidden">
