@@ -84,7 +84,7 @@
 			"Quiet and mystical, yet very inspiring and tireless idealists.",
 		},
 		{
-			id: "INFp",
+			id: "INFP",
 			group: "Diplomats",
 			type: "INFP-A / INFP-T",
 			name: "Mediator",
@@ -174,11 +174,13 @@
 		],
 
 		peopleInDivision() {
-		// get types in division
-		console.log(this.focussedDivision);
-		// get people with types
+			// get types in division
+			const divisionTypes = this.types
+				.filter(type => type.group == this.focussedDivision)
+				.map(type => type.id)
 
-		return [];
+			// get people with types
+			return this.people.filter(person => divisionTypes.includes(person.mbti.join('')))
 		},
 
 		peopleInTeam() {
@@ -305,11 +307,11 @@
 
 		  </h1>
 
-		  <div class="bg-gray-100 text-gray-700 gap-2 p-4 rounded-lg grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+		  <div class="bg-green-100 text-green-700 gap-2 p-4 rounded-lg grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 			<template x-for="person in peopleInDivision()">
 			  <a
 				@click.prevent="setFocussedPerson(person)"
-				class="flex space-x-2 items-center hover:text-gray-800 hover:bg-gray-200 rounded-full p-1 pr-2 w-full"
+				class="flex space-x-2 items-center hover:text-green-800 hover:bg-green-200 rounded-full p-1 pr-2 w-full"
 				href="#"
 			  >
 				<img :src="person.img" class="w-6 aspect-square rounded-full">
@@ -369,26 +371,6 @@
 		  <div class="flex items-center space-x-6">
 			<h1 class="font-bold text-2xl text-gray-900" x-text="focussedTeam"></h1>
 		  </div>
-		  <!-- each genius with its results -->
-		  <div class="space-y-2">
-			<template x-for="genius in geniusSet" hidden>
-			  <div class="flex space-x-4 h-8 items-center">
-				<!-- <p class="ml-12 w-48 truncate shrink-0" x-text="genius"></p> -->
-				<a
-				  @click.prevent="setFocussedDivision(genius)"
-				  x-text="genius"
-				  class="w-48 truncate shrink-0"
-				  href="#"
-				></a>
-
-				<div class="text-base space-x-1">
-				  <span x-text="peopleWithGenius(focussedTeam, genius).length" class="bg-green-100 text-green-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
-				  <span x-text="peopleWithCompetency(focussedTeam, genius).length" class="bg-gray-100 text-gray-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
-				  <span x-text="peopleWithFrustration(focussedTeam, genius).length" class="bg-red-100 text-red-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
-				</div>
-			  </div>
-			</template>
-		  </div>
 		  <div class="border-t border-gray-100"></div>
 		  <!-- list of people with geniuses -->
 		  <div class="space-y-2">
@@ -402,18 +384,8 @@
 				  href="#"
 				></a>
 				<div class="flex space-x-2">
-				  <template x-for="genius in geniusSet" hidden>
-					<a
-					  @click.stop="setFocussedGenius(genius)"
-					  x-text="genius[0]"
-					  class="rounded-md w-6 h-6 text-center"
-					  :class="{
-						'text-green-700 bg-green-100': person.geniuses().includes(genius),
-						'text-gray-700 bg-gray-100': person.competencies().includes(genius),
-						'text-red-700 bg-red-100': person.frustrations().includes(genius),
-					  }"
-					  href="#"
-					></a>
+				  <template x-for="indicator in person.mbti" hidden>
+					<span class="w-6 h-6 bg-gray-100 text-gray-800 text-center rounded-md" x-text="indicator"></span>
 				  </template>
 				</div>
 				</div>
