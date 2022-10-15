@@ -394,7 +394,7 @@
               <span x-text="person.firstName"></span>
               <span x-text="person.lastName"></span>
             </p>
-            <div class="flex space-x-1">
+            <div class="flex space-x-1 bg-gray-100 px-1 rounded-medium">
               <span x-text="person.results.number"></span>
               <span>w</span>
               <span x-text="person.results.wing"></span>
