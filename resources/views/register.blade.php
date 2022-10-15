@@ -11,7 +11,7 @@
 			<x-field-text label="Organisation" name="name"/>
 			<x-form-divider>About you</x-form-divider>
 			<x-field-name firstnameName="first_name" lastnameName="last_name"/>
-			<x-field-text label="Email" name="email" type="email"/>
+			<x-field-email label="Email" name="email"/>
 			<x-field-text label="Job / Title" name="job"/>
 			<x-form-divider>Personality Tests</x-form-divider>
 			<x-fieldset legend="Personality Tests">
