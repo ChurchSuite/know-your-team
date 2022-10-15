@@ -25,7 +25,7 @@ class Organisation extends Model
 
     public function tests()
     {
-        return $this->hasMany('App\Models\OrganisationTest', 'organisation_tests');
+        return $this->hasMany('App\Models\OrganisationTest');
     }
 
     public function users()

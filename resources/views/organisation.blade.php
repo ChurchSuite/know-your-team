@@ -15,6 +15,13 @@
 			<li>{{ $user->first_name }} {{ $user->last_name }}</li>
 		@endforeach
 	</ul>
+
+	<h1>Tests</h1>
+	<ul>
+		@foreach($organisation->tests as $test)
+			<li>{{ $test->test_identifier }}</li>
+		@endforeach
+	</ul>
 <x-page-section>
 	<x-page-title>
 		{{ $organisation->name }}
