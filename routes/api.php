@@ -70,7 +70,7 @@ Route::post('/user', function(Request $request) {
 		'first_name' => $request->first_name,
 		'last_name' => $request->last_name,
 		'email' => $request->email,
-		'job' => $request->email,
+		'job' => $request->job,
 	]);
 
     // get the organisation id from the UUID
