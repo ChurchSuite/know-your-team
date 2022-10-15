@@ -12,16 +12,16 @@
 				.then(data => {
 					data.forEach(p => {
 						self.people.push(new Person(
-							p.firstName, //"Gavin",
-							p.lastName, // "Courtney",
-							p.img, // "https://cdn.churchsuite.com/Nr6TJr3e/addressbook/contacts/7_uj4pxwBT_thumb.jpg",
-							p.job, // "Managing Director",
-							p.teams, // ["Business", "Developer", "Support", "Marketing"],
+							p.firstName,
+							p.lastName,
+							p.img,
+							p.job,
+							p.teams,
 							[
 								p.results.ie,
-								p.results.jp,
 								p.results.sn,
 								p.results.tf,
+								p.results.jp,
 							]
 						))
 					})
