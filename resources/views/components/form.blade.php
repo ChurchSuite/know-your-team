@@ -8,10 +8,15 @@
 	method="{{ $method }}"
 	x-data="{
 		formData: [],
-		errors: [],
+		formErrors: [],
 		formSubmit() {
+			let self = this
 			let fetchData = new FormData($el)
 
+			{{-- clear errors --}}
+			self.formErrors = []
+
+			{{-- post the form --}}
 			fetch($el.action, {
 				body: fetchData,
 				method: $el.method,
@@ -19,15 +24,17 @@
 					'Accept': 'application/json',
 				}
 			}).then(function (response) {
-				if (response.ok) {
-					return response.json();
-				}
-				return Promise.reject(response);
+				return response.json()
 			}).then(function (data) {
-				console.log(data);
+				if (Object.keys(data).includes('errors')) {
+					self.formErrors = data.errors
+				} else {
+					// do stuff
+					console.log(data)
+				}
 			}).catch(function (error) {
-				console.warn('Something went wrong.', error);
-			});
+				console.warn(error)
+			})
 		}
 	}"
 >
