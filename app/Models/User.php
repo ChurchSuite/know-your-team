@@ -28,7 +28,7 @@ class User extends Model
 
     public function results()
     {
-        return $this->belongsToMany('App\Models\TestResult');
+        return $this->hasMany('App\Models\TestResult');
     }
 
     public function teams()
