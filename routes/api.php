@@ -17,6 +17,23 @@ use Illuminate\Support\Str;
 |
 */
 
+// POST /api/organisation
+Route::post('/organisation', function(Request $request) {
+    $request->validate([
+        'name' => 'required|string|max:50',
+    ]);
+
+	$organisation = new Organisation([
+		'name' => $request->name,
+	]);
+
+    // fill guarded fields
+	$organisation->uuid = Str::uuid();
+
+    // save to the database
+	$organisation->save();
+});
+
 // POST /api/user
 Route::post('/user', function(Request $request) {
     $request->validate([
