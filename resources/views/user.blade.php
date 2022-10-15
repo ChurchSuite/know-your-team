@@ -11,7 +11,7 @@
 				<x-field-name label="Name" firstnameName="first_name" lastnameName="last_name"/>
 				<x-field-email label="Email" name="email"/>
 				<x-field-text label="Job" name="job"/>
-				<x-button-submit>Submit</x-button-submit>
+				<x-button-post>Submit</x-button-post>
 			</x-form>
 		</x-form-wrapper>
 	</x-page-section>
