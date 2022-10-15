@@ -333,8 +333,8 @@
 			  <h1 class="font-bold text-2xl text-gray-900" x-text="focussedPerson.name"></h1>
 			  <p class="text-gray-600" x-text="focussedPerson.jobTitle"></p>
 			</div>
+			<a :href="'/submit?test_identifier=myers_briggs&user_uuid='+focussedPerson.uuid">Edit</a>
 		  </div>
-		  <a :href="'/submit?test_identifier=myers_briggs&user_uuid='+focussedPerson.uuid">Edit</a>
 		  <div class="flex flex-row space-x-2">
 			<template x-for="indicator in focussedPerson.mbti" hidden>
 			  <a
