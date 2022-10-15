@@ -8,4 +8,5 @@
 	label="{{ $label }}"
 	name="{{ $name }}"
 	placeholder="{{ $placeholder }}"
+	type="password"
 	/>
