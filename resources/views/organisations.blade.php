@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
+	<ul>
 	@foreach($organisations as $organisation)
-		{{ $organisation->name }}
+		<li><a href="/organisation/{{ $organisation->uuid }}">{{ $organisation->name }}</a></li>
 	@endforeach
+	</ul>
 @stop
