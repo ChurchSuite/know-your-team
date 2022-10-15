@@ -15,9 +15,9 @@
 			<x-field-text label="Job / Title" name="job"/>
 			<x-form-divider>Personality Tests</x-form-divider>
 			<x-fieldset legend="Personality Tests">
-				<x-field-checkbox label="Enneagram" name="tests[enneagram]" suffix="stuff"/>
-				<x-field-checkbox label="Working Genius" name="tests[working_genius]" suffix="stuff"/>
-				<x-field-checkbox label="Myers Briggs" name="tests[myers_briggs]" suffix="stuff"/>
+				<x-field-checkbox label="Enneagram" id="tests_enneagram" name="tests[]" suffix="stuff" value="enneagram"/>
+				<x-field-checkbox label="Working Genius" id="tests_working_genius" name="tests[]" suffix="stuff" value="working_genius"/>
+				<x-field-checkbox label="Myers Briggs" id="tests_myers_briggs" name="tests[]" suffix="stuff" value="myers_briggs"/>
 			</x-fieldset>
 			<x-button-post>Set it up!</x-button-post>
 		</x-form>
