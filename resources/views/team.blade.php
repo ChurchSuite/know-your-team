@@ -3,11 +3,10 @@
 @section('content')
 	New Team Form
 	<x-form>
-		<x-field-text></x-field-text>
-		<x-field-select>
-			<x-field-select-option value="option_1">
-				Option 1
-			</x-field-select-option>
+		<x-field-text label="Name" name="name"/>
+		<x-field-select label="Team" name="team">
+			<option value="option_1">Option 1</option>
+			<option value="option_2">Option 2</option>
 		</x-field-select>
 		<x-button-submit>Submit</x-button-submit>
 	</x-form>

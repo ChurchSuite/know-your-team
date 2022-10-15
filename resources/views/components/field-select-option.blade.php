@@ -1,4 +1,4 @@
-@props(['value' => null])
+@props(['value' => ''])
 
 <option name="{{ $value }}">
 	{{ $slot }}
