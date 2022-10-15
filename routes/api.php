@@ -56,6 +56,15 @@ Route::post('/team', function(Request $request) {
 	$team->save();
 });
 
+// POST /api/test_result
+Route::post('/test_result', function(Request $request) {
+    $request->validate([
+        'test_identifier' => 'required|string|max:50',
+        'result' => 'required',
+        'user_uuid' => 'required|uuid',
+    ]);
+});
+
 // POST /api/user
 Route::post('/user', function(Request $request) {
     $request->validate([
