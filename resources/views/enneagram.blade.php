@@ -29,7 +29,7 @@
         <template x-for="person in people" hidden>
           <div
             x-on:click="setFocussedPerson(person)"
-            class="flex flex-col items-center justify-center h-60 shadow rounded space-y-2 hover:bg-gray-50 hover:shadow-md cursor-pointer"
+            class="flex flex-col items-center justify-center h-60 shadow rounded space-y-2 bg-white hover:bg-gray-50 hover:shadow-md cursor-pointer"
           >
             <img :src="person.img" class="rounded-full w-3/4 max-w-[9rem] aspect-square">
             <p class="leading-6">
