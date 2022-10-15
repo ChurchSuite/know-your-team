@@ -5,14 +5,12 @@
 <script>
 	function workingGenius() {
 		return {
-
 			fetchPeople() {
 				let self = this;
 				fetch('/api/data?test_identifier={{ $test_identifier }}')
 					.then(res => res.json())
 					.then(data => {
 						data.forEach(p => {
-							console.log(p.results.genius1.charAt(1).toUpperCase()+p.results.genius1.substring(1))
 							self.people.push(new Person(
 								p.firstName, //"Gavin",
 								p.lastName, // "Courtney",
