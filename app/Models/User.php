@@ -16,6 +16,7 @@ class User extends Model
         'last_name',
         'email',
         'job',
+        'profile_picture',
     ];
 
     protected $guarded = [
