@@ -8,7 +8,7 @@
 
 	<x-form-wrapper>
 		<x-form action="/api/register">
-			<x-field-text label="Organisation" name="organisation"/>
+			<x-field-text label="Organisation" name="name"/>
 			<x-form-divider>About you</x-form-divider>
 			<x-field-name firstnameName="first_name" lastnameName="last_name"/>
 			<x-field-text label="Email" name="email" type="email"/>
