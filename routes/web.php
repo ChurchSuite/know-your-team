@@ -41,3 +41,11 @@ Route::get('/organisation/{organisation:uuid}', function(Request $request, Organ
 Route::get('/organisations', function() {
 	return view('organisations', ['organisations' => Organisation::all()]);
 });
+
+Route::get('/submit', function() {
+	$organisationId = Session::get('organisation_id');
+	if (empty($organisationId)) throw new \Exception();
+	$organisation = Organisation::find($organisationId);
+
+	return view('submit', ['organisation' => $organisation]);
+});
