@@ -10,7 +10,7 @@
 		<x-form action="/api/register">
 			<x-field-text label="Organisation" name="organisation"/>
 			<x-form-divider>About you</x-form-divider>
-			<x-field-name firstnameName="first_name" firstnameName="last_name"/>
+			<x-field-name firstnameName="first_name" lastnameName="last_name"/>
 			<x-field-text label="Email" name="email" type="email"/>
 			<x-field-text label="Job / Title" name="job"/>
 			<x-form-divider></x-form-divider>
