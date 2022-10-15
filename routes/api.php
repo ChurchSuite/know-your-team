@@ -116,8 +116,6 @@ Route::post('/user', function(Request $request) {
         'profile_picture' => 'url',
     ]);
 
-    error_log(print_r(Session::all(), true));
-
 	$user = new User([
 		'first_name' => $request->first_name,
 		'last_name' => $request->last_name,
