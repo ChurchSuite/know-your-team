@@ -27,13 +27,18 @@
 					'Accept': 'application/json',
 				}
 			}).then(function (response) {
-				return response.ok === true ? response : response.json()
+				{{ $method == 'put' ? 'return response.ok === true ? response : response.json()' : 'return response.json()' }}
 			}).then(function (data) {
+console.log(data)
 				if (Object.keys(data).includes('errors')) {
 					self.formErrors = data.errors
 				} else {
 					// do stuff
-					location.reload()
+					if (Object.keys(data).includes('redirect')) {
+						location.href = data.redirect
+					} else {
+						location.reload()
+					}
 				}
 			}).catch(function (error) {
 				console.warn('thrown?', error)
