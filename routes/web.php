@@ -25,7 +25,7 @@ Route::get('/data', fn() => view('data'));
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
 	Session::put('organisation_id', $organisation->id);
 
-	return $organisation->name;
+	return view('organisation', ['organisation' => $organisation]);
 });
 
 // hacky endpoint to list organisations for time being

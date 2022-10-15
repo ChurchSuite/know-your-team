@@ -18,8 +18,18 @@ class Organisation extends Model
         'uuid',
     ];
 
+    public function teams()
+    {
+        return $this->hasMany('App\Models\Team');
+    }
+
     public function tests()
     {
-        return $this->belongsToMany('App\Models\OrganisationTest', 'organisation_tests');
+        return $this->hasMany('App\Models\OrganisationTest', 'organisation_tests');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
     }
 }
