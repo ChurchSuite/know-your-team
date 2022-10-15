@@ -2,6 +2,7 @@
 	'label' => '',
 	'name' => '',
 	'placeholder' => '',
+	'prefixIcon' => null,
 	'type' => 'text',
 ])
 
@@ -10,12 +11,12 @@
 		{{ $label }}
 	</x-field-label>
 	<div class="relative mt-1 rounded-md shadow-sm">
-		{{ $slot }}
+		{{ $prefixIcon }}
 		<input
 			x-bind:class="{
-				'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500': errors && errors.{{ $name }}
+				'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500 pr-10': errors && errors.{{ $name }}
 			}"
-			class="border-gray-300 block w-full rounded-md pr-10 focus:outline-none sm:text-sm"
+			class="border-gray-300 block w-full rounded-md {{ $prefixIcon ? 'pl-10' : '' }} focus:outline-none sm:text-sm"
 			id="{{ $name }}"
 			name="{{ $name }}"
 			placeholder="{{ $placeholder }}"

@@ -1,10 +1,11 @@
 @props(['id' => null])
 <div
-	class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+	class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-red-500"
 	x-show="errors && errors.{{ $id }}"
 	>
-	<!-- Heroicon name: mini/exclamation-circle -->
-	<svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-		<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+	<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+		<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V15"></path>
+		<circle cx="12" cy="9" r="1" fill="currentColor"></circle>
+		<circle cx="12" cy="12" r="7.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle>
 	</svg>
 </div>
