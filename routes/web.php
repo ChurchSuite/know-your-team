@@ -20,7 +20,8 @@ Route::get('/', function(Request $request) {
 	try {
 		$organisationId = Session::get('organisation_id');
 		if (empty($organisationId)) throw new \Exception();
-		$organisation = Organisation::get($organisationId);
+		$organisation = Organisation::find($organisationId);
+
 		return view('organisation', ['organisation' => $organisation]);
 	} catch (\Exception $e) {
 		return view('register');
@@ -33,7 +34,6 @@ Route::get('/data', fn() => view('data'));
 
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
 	Session::put('organisation_id', $organisation->id);
-
 	return view('organisation', ['organisation' => $organisation]);
 });
 

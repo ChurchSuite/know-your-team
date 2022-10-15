@@ -3,6 +3,7 @@
 use App\Models\Organisation;
 use App\Models\OrganisationTest;
 use App\Models\Team;
+use App\Models\TestResult;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -97,13 +98,31 @@ Route::post('/team', function(Request $request) {
 	$team->save();
 });
 
-// POST /api/test_result
-Route::post('/test_result', function(Request $request) {
+// POST /api/submit
+Route::post('/submit', function(Request $request) {
     $request->validate([
         'test_identifier' => 'required|string|max:50',
-        'result' => 'required',
         'user_uuid' => 'required|uuid',
     ]);
+
+    $user = User::where(['uuid' => $request->user_uuid])->first();
+    
+    $resultJSON = json_encode($request->{$request->test_identifier});
+
+    // delete any existing data for this personality test
+    TestResult::where([
+        'test_identifier' => $request->test_identifier,
+        'user_id' => $user->id,
+    ])->delete();
+
+    $result = new TestResult([
+        'test_identifier' => $request->test_identifier,
+        'user_id' => $user->id,
+        'result' => $resultJSON,
+    ]);
+    $result->save();
+
+    return response()->json(['redirect' => '/']);
 });
 
 // POST /api/user
@@ -115,8 +134,6 @@ Route::post('/user', function(Request $request) {
         'job' => 'required|string|max:50',
         'profile_picture' => 'url',
     ]);
-
-    error_log(print_r(Session::all(), true));
 
 	$user = new User([
 		'first_name' => $request->first_name,
