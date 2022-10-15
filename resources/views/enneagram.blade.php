@@ -2,8 +2,9 @@
 
 @section('content')
   <script src="/scripts/enneagram.js"></script>
-  <div x-data="enneagram()">
-    <select x-on:change="setView($el.value)" x-model="view" class="mb-4 w-full sticky top-0 rounded-md border-gray-300">
+  <div class="p-8" x-data="enneagram()">
+    {{-- select --}}
+	<select x-on:change="setView($el.value)" x-model="view" class="mb-4 w-full sticky top-0 rounded-md border-gray-300">
       <option value="people">Home</option>
       <optgroup label="Number">
         <template x-for="type in types" :key="type.number" hidden>
