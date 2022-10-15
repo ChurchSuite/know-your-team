@@ -113,8 +113,10 @@ Route::post('/user', function(Request $request) {
         'last_name' => 'required|string|max:50',
         'email' => 'required|email',
         'job' => 'required|string|max:50',
-        'profile_picture' => 'required|url',
+        'profile_picture' => 'url',
     ]);
+
+    error_log(print_r(Session::all(), true));
 
 	$user = new User([
 		'first_name' => $request->first_name,
