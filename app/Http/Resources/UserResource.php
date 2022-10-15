@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'firstName' => $this->first_name,
             'lastName' => $this->last_name,
             'img' => $this->profile_picture,
-            'jobTitle' => $this->job,
+            'job' => $this->job,
             'teams' => $this->teams->map(fn($team) => $team->name),
             'results' => json_decode($this->results
                 ->filter(fn($result) => $result->test_identifier == $request->test_identifier)
