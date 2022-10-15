@@ -64,6 +64,7 @@ Route::post('/user', function(Request $request) {
         'email' => 'required|email',
         'job' => 'required|string|max:50',
         'organisation_uuid' => 'required|uuid',
+        'profile_picture' => 'required|url',
     ]);
 
 	$user = new User([
@@ -71,6 +72,7 @@ Route::post('/user', function(Request $request) {
 		'last_name' => $request->last_name,
 		'email' => $request->email,
 		'job' => $request->job,
+		'profile_picture' => $request->profile_picture,
 	]);
 
     // get the organisation id from the UUID
