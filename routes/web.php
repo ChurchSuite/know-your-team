@@ -54,9 +54,9 @@ Route::get('/organisation/{organisation:uuid}', function(Request $request, Organ
 	return view('organisation', ['organisation' => $organisation]);
 });
 
-Route::get('/test/enneagram', fn() => view('enneagram'));
-Route::get('/test/myers_briggs', fn() => view('myers_briggs'));
-Route::get('/test/working_genius', fn() => view('working_genius'));
+Route::get('/test/enneagram', fn() => view('enneagram', ['test_identifier' => 'enneagram']));
+Route::get('/test/myers_briggs', fn() => view('myers_briggs', ['test_identifier' => 'myers_briggs']));
+Route::get('/test/working_genius', fn() => view('working_genius', ['test_identifier' => 'working_genius']));
 
 // hacky endpoint to list organisations for time being
 Route::get('/organisations', function() {
