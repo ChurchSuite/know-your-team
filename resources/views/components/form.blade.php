@@ -16,7 +16,6 @@
 				body: fetchData,
 				method: $el.method,
 				headers: {
-					'Content-Type': 'multipart/form-data',
 					'Accept': 'application/json',
 				}
 			}).then(function (response) {
