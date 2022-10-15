@@ -38,7 +38,6 @@ Route::get('/settings', function() {
 });
 
 Route::get('/team', fn() => view('team'));
-Route::get('/data', fn() => view('data'));
 
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
 	Session::put('organisation_id', $organisation->id);
