@@ -24,7 +24,8 @@
 									p.results.competency2.charAt(0).toUpperCase()+p.results.competency2.substring(1), // "Invention",
 									p.results.frustration1.charAt(0).toUpperCase()+p.results.frustration1.substring(1), // "Invention",
 									p.results.frustration2.charAt(0).toUpperCase()+p.results.frustration2.substring(1), // "Invention",
-								]
+								],
+								p.uuid,
 							))
 						})
 					})
@@ -256,13 +257,14 @@
 
 	class Person {
 		// constructor(firstName, lastName, img, allGeniuses, jobTitle, teams) {
-		constructor(firstName, lastName, img, jobTitle, teams, allGeniuses) {
+		constructor(firstName, lastName, img, jobTitle, teams, allGeniuses, uuid) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.img = img;
 			this.allGeniuses = allGeniuses;
 			this.jobTitle = jobTitle;
 			this.teams = teams;
+			this.uuid = uuid;
 		}
 
 		competencies() {
@@ -412,6 +414,7 @@
 				<p class="text-gray-600" x-text="focussedPerson.jobTitle"></p>
 			  </div>
 			</div>
+			<a :href="'/submit?test_identifier=working_genius&user_uuid='+focussedPerson.uuid">Edit</a>
 			<div class="flex flex-row space-x-2">
 			  <template x-for="genius in geniusSet" hidden>
 				<a

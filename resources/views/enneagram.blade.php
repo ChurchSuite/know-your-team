@@ -19,7 +19,8 @@
 								{
 									number: parseInt(p.results.type),
 									wing: parseInt(p.results.wing),
-								}
+								},
+								p.uuid,
 							))
 						})
 					})
@@ -328,13 +329,14 @@
 	}
 
 	class Person {
-		constructor(firstName, lastName, img, jobTitle, teams, results) {
+		constructor(firstName, lastName, img, jobTitle, teams, results, uuid) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.img = img;
 			this.results = results;
 			this.jobTitle = jobTitle;
 			this.teams = teams;
+			this.uuid = uuid;
 		}
 
 		get id() {
@@ -442,6 +444,7 @@
             <p class="text-gray-600" x-text="focussedPerson.jobTitle"></p>
           </div>
         </div>
+		<a :href="'/submit?test_identifier=enneagram&user_uuid='+focussedPerson.uuid">Edit</a>
         <!-- enneagram number and title -->
         <div>
           <div class="flex flex-wrap gap-2">

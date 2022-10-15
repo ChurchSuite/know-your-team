@@ -22,7 +22,8 @@
 								p.results.sn,
 								p.results.tf,
 								p.results.jp,
-							]
+							],
+							p.uuid,
 						))
 					})
 				})
@@ -230,13 +231,14 @@
 	}
 
 	class Person {
-		constructor(firstName, lastName, img, jobTitle, teams, mbti) {
+		constructor(firstName, lastName, img, jobTitle, teams, mbti, uuid) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.img = img;
 			this.jobTitle = jobTitle;
 			this.teams = teams;
 			this.mbti = mbti;
+			this.uuid = uuid;
 		}
 
 		get id() {
@@ -330,6 +332,7 @@
 			  <p class="text-gray-600" x-text="focussedPerson.jobTitle"></p>
 			</div>
 		  </div>
+		  <a :href="'/submit?test_identifier=myers_briggs&user_uuid='+focussedPerson.uuid">Edit</a>
 		  <div class="flex flex-row space-x-2">
 			<template x-for="indicator in focussedPerson.mbti" hidden>
 			  <a
