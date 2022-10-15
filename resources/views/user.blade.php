@@ -5,7 +5,6 @@
 		<x-page-title>
 			Add Member
 		</x-page-title>
-
 		<x-form-wrapper>
 			<x-form action="/api/user">
 				<x-field-name label="Name" firstnameName="first_name" lastnameName="last_name"/>
