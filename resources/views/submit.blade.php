@@ -9,40 +9,48 @@
 			<x-form
 				action="/api/submit"
 				formData="{{ json_encode([
-					'test_identifier' => $organisation->tests->first()->test_identifier,
+					'test_identifier' => $test_identifier ?? $organisation->tests->first()->test_identifier,
 					'enneagram' => [
-						'type' => null,
-						'wing' => null,
+						'type' => $result->type ?? null,
+						'wing' => $result->wing ?? null,
 					],
 					'myers_briggs' => [
-						'ie' => null,
-						'sn' => null,
-						'tf' => null,
-						'jp' => null,
+						'ie' => $result->ie ?? null,
+						'sn' => $result->sn ?? null,
+						'tf' => $result->tf ?? null,
+						'jp' => $result->jp ?? null,
 					],
 					'working_genius' => [
-						'genius1' => null,
-						'genius2' => null,
-						'competency1' => null,
-						'competency2' => null,
-						'frustration1' => null,
-						'frustration2' => null,
+						'genius1' => $result->genius1 ?? null,
+						'genius2' => $result->genius2 ?? null,
+						'competency1' => $result->competency1 ?? null,
+						'competency2' => $result->competency2 ?? null,
+						'frustration1' => $result->frustration1 ?? null,
+						'frustration2' => $result->frustration2 ?? null,
 					],
 				]) }}"
 			>
 				{{-- Dropdown of users --}}
-				<x-field-select label="Member" name="user_uuid">
-					@foreach ($organisation->users as $user)
-						<option value="{{ $user->uuid }}">{{ $user->first_name }} {{ $user->last_name }}</option>
-					@endforeach
-				</x-field-select>
+				@if (is_null($user_uuid ?? null))
+					<x-field-select label="Member" name="user_uuid">
+						@foreach ($organisation->users as $user)
+							<option value="{{ $user->uuid }}">{{ $user->first_name }} {{ $user->last_name }}</option>
+						@endforeach
+					</x-field-select>
+				@else
+					<input type="hidden" name="user_uuid" value="{{ $user_uuid }}">
+				@endif
 
 				{{-- Dropdown of tests --}}
-				<x-field-select label="Test" name="test_identifier">
-					@foreach ($organisation->tests as $test)
-						<option value="{{ $test->test_identifier }}">{{ $test->name() }}</option>
-					@endforeach
-				</x-field-select>
+				@if (is_null($test_identifier ?? null))
+					<x-field-select label="Test" name="test_identifier">
+						@foreach ($organisation->tests as $test)
+							<option value="{{ $test->test_identifier }}">{{ $test->name() }}</option>
+						@endforeach
+					</x-field-select>
+				@else
+					<input type="hidden" name="test_identifier" value="{{ $test_identifier }}">
+				@endif
 
 
 				<div class="space-y-2" x-show="formData.test_identifier == 'enneagram'">

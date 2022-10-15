@@ -2,6 +2,7 @@
 
 use App\Models\Organisation;
 use App\Models\Team;
+use App\Models\TestResult;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -63,12 +64,21 @@ Route::get('/organisations', function() {
 	return view('organisations', ['organisations' => Organisation::all()]);
 });
 
-Route::get('/submit', function() {
+Route::get('/submit', function(Request $request) {
 	$organisationId = Session::get('organisation_id');
 	if (empty($organisationId)) throw new \Exception();
 	$organisation = Organisation::find($organisationId);
 
-	return view('submit', ['organisation' => $organisation]);
+	$data = ['organisation' => $organisation];
+
+	if (!is_null($request->get('user_uuid')) && !is_null($request->get('test_identifier'))) {
+		$user = User::where(['uuid' => $request->user_uuid])->first();
+		$data['user_uuid'] = $request->get('user_uuid');
+		$data['test_identifier'] = $request->get('test_identifier');
+		$data['result'] = TestResult::where(['user_id' => $user->id, 'test_identifier' => $request->test_identifier])->first();
+	}
+
+	return view('submit', $data);
 });
 
 Route::get('/add_to_team', function() {
