@@ -23,7 +23,7 @@ Route::get('/team', fn() => view('team'));
 Route::get('/data', fn() => view('data'));
 
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
-	Session::put('organisation_uuid', $organisation->uuid);
+	Session::put('organisation_id', $organisation->id);
 
 	return $organisation->name;
 });
