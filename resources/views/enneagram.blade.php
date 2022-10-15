@@ -10,16 +10,15 @@
 					.then(res => res.json())
 					.then(data => {
 						data.forEach(p => {
-							console.log(p)
 							self.people.push(new Person(
-								p.firstName, //"Gavin",
-								p.lastName, // "Courtney",
-								p.img, // "https://cdn.churchsuite.com/Nr6TJr3e/addressbook/contacts/7_uj4pxwBT_thumb.jpg",
-								p.job, // "Managing Director",
-								p.teams, // ["Business", "Developer", "Support", "Marketing"],
+								p.firstName,
+								p.lastName,
+								p.img,
+								p.job,
+								p.teams,
 								{
-									number: p.results.type,
-									wing: p.results.wing,
+									number: parseInt(p.results.type),
+									wing: parseInt(p.results.wing),
 								}
 							))
 						})
