@@ -2,6 +2,7 @@
 
 use App\Models\Organisation;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Request;
 
 /*
@@ -22,6 +23,8 @@ Route::get('/team', fn() => view('team'));
 Route::get('/data', fn() => view('data'));
 
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
+	Session::put('organisation_uuid', $organisation->uuid);
+
 	return $organisation->name;
 });
 
