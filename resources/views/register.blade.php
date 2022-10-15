@@ -7,7 +7,17 @@
 	</x-page-title>
 
 	<x-form-wrapper>
-		<x-form action="/api/organisation">
+		<x-form
+			action="/api/organisation"
+			formData="{{ json_encode([
+				'first_name' => '',
+				'last_name' => '',
+				'email' => '',
+				'job' => '',
+				'name' => '',
+				'tests' => [],
+			]) }}"
+			>
 			<x-field-text label="Organisation" name="name"/>
 			<x-form-divider>About you</x-form-divider>
 			<x-field-name firstnameName="first_name" lastnameName="last_name"/>
