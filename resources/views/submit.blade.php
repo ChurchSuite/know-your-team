@@ -29,17 +29,101 @@
 			
 				<div x-show="formData.test_identifier == 'enneagram'">
 				<x-form-divider>Enneagram</x-form-divider>
-					Enneagram
+					<x-field-select label="Type" name="type">
+						<option>-</option>
+						@for ($i = 1; $i <= 9; $i++)
+							<option value="{{ $i }}">{{ $i }}</option>
+						@endfor
+					</x-field-select>
+					<x-field-select label="Wing" name="wing">
+						<option>-</option>
+						@for ($i = 1; $i <= 9; $i++)
+							<option value="{{ $i }}">{{ $i }}</option>
+						@endfor
+					</x-field-select>
 				</div>
 
 				<div x-show="formData.test_identifier == 'myers_briggs'">
 				<x-form-divider>Myers Briggs</x-form-divider>
-					Myers Briggs
+				<x-field-select name="ie">
+					<option>-</option>
+					<option value="I">Introvert</option>
+					<option value="E">Extravert</option>
+				</x-field-select>
+				<x-field-select name="sn">
+					<option>-</option>
+					<option value="S">Sensing</option>
+					<option value="N">Intuitive</option>
+				</x-field-select>
+				<x-field-select name="tf">
+					<option>-</option>
+					<option value="T">Thinking</option>
+					<option value="F">Feeling</option>
+				</x-field-select>
+				<x-field-select name="jp">
+					<option>-</option>
+					<option value="J">Judging</option>
+					<option value="P">Perceiving</option>
+				</x-field-select>
 				</div>
 
 				<div x-show="formData.test_identifier == 'working_genius'">
 				<x-form-divider>Working Genius</x-form-divider>
-					Working Genius
+				<x-field-select label="Genius 1" name="genius1">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+				<x-field-select label="Genius 2" name="genius2">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+				<x-field-select label="Competency 1" name="competency1">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+				<x-field-select label="Competency 2" name="competency2">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+				<x-field-select label="Frustration 1" name="frustration1">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+				<x-field-select label="Frustration 2" name="frustration2">
+					<option>-</option>
+					<option value="wonder">Wonder</option>
+					<option value="invention">Invention</option>
+					<option value="discernment">Discernment</option>
+					<option value="galvanising">Galvanising</option>
+					<option value="enablement">Enablement</option>
+					<option value="tenacity">Tenacity</option>
+				</x-field-select>
+
 				</div>
 				<x-button-submit>Submit</x-button-submit>
 			</x-form>
