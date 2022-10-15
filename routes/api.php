@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Organisation;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,27 @@ Route::post('/organisation', function(Request $request) {
 
     // save to the database
 	$organisation->save();
+});
+
+// POST /api/team
+Route::post('/team', function(Request $request) {
+    $request->validate([
+        'name' => 'required|string|max:50',
+        'organisation_uuid' => 'required|uuid',
+    ]);
+
+	$team = new Team([
+		'name' => $request->name,
+	]);
+
+    // get the organisation id from the UUID
+    $organisation = Organisation::where('uuid', $request->organisation_uuid)->get();
+
+    // fill guarded fields
+	$team->organisation_id = $organisation->id;
+
+    // save to the database
+	$team->save();
 });
 
 // POST /api/user
