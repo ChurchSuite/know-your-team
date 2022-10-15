@@ -4,8 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Know Your Team</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+			rel="stylesheet"
+		/>
 		<script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
 		<script src="https://unpkg.com/alpinejs@3.10.3" defer=""></script>
+		<!-- Specify a custom TailwindCSS configuration -->
+		<script type="tailwind-config">
+			{
+				theme: {
+					extend: {
+						fontFamily: {
+							{{-- force everything to Inter! --}}
+							'sans': ['Inter'],
+						}
+					}
+				}
+			}
+		</script>
     </head>
     <body class="antialiased bg-gray-50">
 		<div x-data="{ menuOpen: false }"class="relative bg-white">
