@@ -57,3 +57,11 @@ Route::get('/submit', function() {
 
 	return view('submit', ['organisation' => $organisation]);
 });
+
+Route::get('/add_to_team', function() {
+	$organisationId = Session::get('organisation_id');
+	if (empty($organisationId)) throw new \Exception();
+	$organisation = Organisation::find($organisationId);
+
+	return view('add_to_team', ['organisation' => $organisation]);
+});

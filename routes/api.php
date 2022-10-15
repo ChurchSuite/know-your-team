@@ -21,6 +21,27 @@ use Illuminate\Support\Str;
 |
 */
 
+Route::post('/add_to_team', function(Request $request) {
+    $request->validate([
+        'team_id' => 'required|int',
+        'user_uuid' => 'required|uuid',
+    ]);
+
+    // only allow teams that belong to the current organisation
+    if (Team::find($request->team_id)->organisation->id != Session::get('organisation_id')) {
+        throw new \Exception();
+    }
+
+    $user = User::where(['uuid' => $request->user_uuid])->first();
+
+    // only allow adding to team if not already part of it
+    if ($user->teams->filter(fn($team) => $team->id == $request->team_id)->isEmpty()) {
+        $user->teams()->attach($request->team_id);
+    }
+
+    return response()->json(['redirect' => '/']);
+});
+
 // POST /api/organisation
 Route::post('/organisation', function(Request $request) {
     $request->validate([

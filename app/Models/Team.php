@@ -20,6 +20,11 @@ class Team extends Model
 		'organisation_id',
 	];
 
+	public function organisation()
+    {
+        return $this->belongsTo('App\Models\Organisation');
+    }
+
 	public function users()
     {
         return $this->belongsToMany('App\Models\User', 'team_members');
