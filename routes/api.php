@@ -5,6 +5,7 @@ use App\Models\OrganisationTest;
 use App\Models\Team;
 use App\Models\TestResult;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -20,6 +21,17 @@ use Illuminate\Support\Str;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/data', function (Request $request) {
+    $users = User::where(['organisation_id' => Session::get('organisation_id')])
+        ->get()
+        ->filter(function ($user) use ($request) {
+            return TestResult::where(['user_id' => $user->id, 'test_identifier' => $request->test_identifier])
+                ->get()
+                ->isNotEmpty();
+    });
+    return UserResource::collection($users);
+});
 
 Route::post('/add_to_team', function(Request $request) {
     $request->validate([
