@@ -65,7 +65,7 @@ Route::put('/organisation/{organisation:uuid}', function(Request $request, Organ
     $request->validate([
         'name' => 'required|string|max:50',
     ]);
-error_log(print_r($request->name, true));
+
 	$organisation->name = $request->name;
 
     // save to the database
