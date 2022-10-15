@@ -20,7 +20,7 @@
 							<div class="flex items-center space-x-3">
 								<h3 class="truncate text-sm font-medium text-gray-900">{{ $user->name }}</h3>
 								<span class="space-x-1">
-									@foreach ($user->teams() as $team)
+									@foreach ($user->teams as $team)
 										@if ($team)
 											<span class="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">{{ $team->name }}</span>
 										@endif
