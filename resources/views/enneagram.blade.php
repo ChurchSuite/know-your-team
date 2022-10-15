@@ -446,6 +446,18 @@
         </div>
 		<a :href="'/submit?test_identifier=enneagram&user_uuid='+focussedPerson.uuid">Edit</a>
         <!-- enneagram number and title -->
+		<div class="flex flex-row space-x-2">
+			<div
+				x-text="focussedPerson.results.number"
+				class="w-16 h-16 inline-flex items-center justify-center font-semibold rounded-md text-xl bg-gray-100 text-gray-700"
+				href="#"
+			></div>
+			<div
+				x-text="'w'+focussedPerson.results.wing"
+				class="w-16 h-16 inline-flex items-center justify-center font-semibold rounded-md text-xl bg-blue-50 text-gray-700"
+				href="#"
+			></div>
+		</div>
         <div>
           <div class="flex flex-wrap gap-2">
             <template x-for="team in focussedPerson.teams" hidden>
