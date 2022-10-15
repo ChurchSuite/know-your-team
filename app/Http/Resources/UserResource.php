@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'results' => json_decode($this->results
                 ->filter(fn($result) => $result->test_identifier == $request->test_identifier)
                 ->first()->result, true),
+            'uuid' => $this->uuid,
         ];
     }
 }
