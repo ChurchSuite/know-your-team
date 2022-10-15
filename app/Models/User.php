@@ -26,6 +26,11 @@ class User extends Model
         'uuid',
     ];
 
+    public function results()
+    {
+        return $this->belongsToMany('App\Models\TestResult');
+    }
+
     public function teams()
     {
         return $this->belongsToMany('App\Models\Team', 'team_members');
