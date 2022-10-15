@@ -38,7 +38,7 @@
 							</div>
 							<p class="mt-1 truncate text-sm text-gray-500">{{ $user->job }}</p>
 						</div>
-						<img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="{{ $user->url }}" alt="">
+						<img class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src="{{ $user->profile_picture }}" alt="">
 					</div>
 					<a href="/user/{{ $user->uuid }}" class="absolute inset-0"></a>
 				</div>
