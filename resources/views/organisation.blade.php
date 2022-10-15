@@ -2,6 +2,9 @@
 
 @section('content')
 <x-page-section>
+	<h1 class="text-3xl font-bold tracking-tight text-gray-800">
+		{{ $organisation->name }}
+	</h1>
 	{{-- Results --}}
 	<x-dashboard-widget-wrapper>
 		<x-dashboard-widget title="Test Results">
