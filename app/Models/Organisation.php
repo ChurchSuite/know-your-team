@@ -17,4 +17,9 @@ class Organisation extends Model
         'id',
         'uuid',
     ];
+
+    public function tests()
+    {
+        return $this->belongsToMany('App\Models\OrganisationTest', 'organisation_tests');
+    }
 }
