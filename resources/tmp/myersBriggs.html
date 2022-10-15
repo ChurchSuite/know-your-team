@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+  <title>Bunches - Working Genius</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  <script src="https://unpkg.com/alpinejs@3.10.3" defer></script>
+</head>
+<body class="p-2 sm:p-3 md:p-4">
+  <script src="myersBriggs.js"></script>
+  <div x-data="myersBriggs()">
+    <select @change="setView($el.value)" x-model="view" class="mb-4 w-full sticky top-0 rounded-md border-gray-300">
+      <option value="people">Home</option>
+      <optgroup label="Divisions">
+        <option value="division.analysts">Analysts</option>
+        <option value="division.diplomats">Diplomats</option>
+        <option value="division.sentinels">Sentinels</option>
+        <option value="division.explorers">Explorers</option>
+      </optgroup>
+      <optgroup label="Teams">
+        <template x-for="team in teams" :key="team" hidden>
+          <option :value="`team.${team}`" x-text="team"></option>
+        </template>
+      </optgroup>
+      <optgroup label="People">
+        <template x-for="person in people" :key="person.id" hidden>
+          <option :value="`person.${person.id}`" x-text="person.name"></option>
+        </template>
+      </optgroup>
+    </select>
+
+    <template x-if="view == 'people'">
+      <!-- Grid of people -->
+      <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:grid-cols-4 md:fap-4 lg:grid-cols-5 xl:grid-cols-6">
+        <template x-for="person in people" hidden>
+          <div
+            @click="setFocussedPerson(person)"
+            class="flex flex-col items-center justify-center h-60 shadow rounded space-y-2 hover:bg-gray-50 hover:shadow-md cursor-pointer"
+          >
+            <img :src="person.img" class="rounded-full w-3/4 max-w-[9rem] aspect-square">
+            <p class="leading-6">
+              <span x-text="person.firstName"></span>
+              <span x-text="person.lastName"></span>
+            </p>
+            <div class="flex space-x-1">
+              <template x-for="indicator in person.mbti">
+                <span class="rounded-md w-6 h-6 text-center text-gray-700 bg-gray-100" x-text="indicator"></span>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <template x-if="view.startsWith('division')">
+      <!-- Single division table -->
+      <div class="space-y-4 py-6">
+        <h1 class="flex items-center text-2xl space-x-4">
+          <span x-text="focussedDivision"></span>
+
+        </h1>
+
+        <div class="bg-gray-100 text-gray-700 gap-2 p-4 rounded-lg grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <template x-for="person in peopleInDivision()">
+            <a
+              @click.prevent="setFocussedPerson(person)"
+              class="flex space-x-2 items-center hover:text-gray-800 hover:bg-gray-200 rounded-full p-1 pr-2 w-full"
+              href="#"
+            >
+              <img :src="person.img" class="w-6 aspect-square rounded-full">
+              <p class="leading-6 truncate" x-text="person.name"></p>
+            </a>
+          </template>
+        </div>
+
+      </div>
+    </template>
+
+    <template x-if="view.startsWith('person')">
+      <!-- Single person focus-->
+      <div class="py-4 space-y-4">
+        <!-- image -->
+        <div class="flex items-center space-x-6">
+          <img :src="focussedPerson.img" class="h-16 w-16 rounded-full">
+          <div>
+            <h1 class="font-bold text-2xl text-gray-900" x-text="focussedPerson.name"></h1>
+            <p class="text-gray-600" x-text="focussedPerson.jobTitle"></p>
+          </div>
+        </div>
+        <div class="flex flex-row space-x-2">
+          <template x-for="indicator in focussedPerson.mbti" hidden>
+            <a
+              @click.prevent=""
+              x-text="indicator"
+              class="w-16 h-16 inline-flex items-center justify-center font-semibold rounded-md text-xl bg-gray-100 text-gray-700"
+              href="#"
+            ></a>
+          </template>
+        </div>
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <template x-for="team in focussedPerson.teams" hidden>
+              <a
+                @click.prevent="setFocussedTeam(team)"
+                x-text="team"
+                class="rounded-full px-3 py-2 border border-blue-200 bg-blue-100 hover:bg-blue-200 text-blue-700"
+                href="#"
+              ></a>
+            </template>
+          </div>
+        </div>
+        <!-- combo description -->
+        <div class="space-y-2">
+          <p class="text-lg font-semibold" x-text="`${typeCombo(focussedPerson).name} (${typeCombo(focussedPerson).type})`"></p>
+          <p class="text-base pl-4 border-l-4 border-gray-200 max-w-md" x-text="typeCombo(focussedPerson).summary"></p>
+        </div>
+      </div>
+    </template>
+
+    <template x-if="view.startsWith('team')">
+      <!-- Single team focus-->
+      <div class="py-4 space-y-4">
+        <div class="flex items-center space-x-6">
+          <h1 class="font-bold text-2xl text-gray-900" x-text="focussedTeam"></h1>
+        </div>
+        <!-- each genius with its results -->
+        <div class="space-y-2">
+          <template x-for="genius in geniusSet" hidden>
+            <div class="flex space-x-4 h-8 items-center">
+              <!-- <p class="ml-12 w-48 truncate shrink-0" x-text="genius"></p> -->
+              <a
+                @click.prevent="setFocussedDivision(genius)"
+                x-text="genius"
+                class="w-48 truncate shrink-0"
+                href="#"
+              ></a>
+
+              <div class="text-base space-x-1">
+                <span x-text="peopleWithGenius(focussedTeam, genius).length" class="bg-green-100 text-green-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
+                <span x-text="peopleWithCompetency(focussedTeam, genius).length" class="bg-gray-100 text-gray-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
+                <span x-text="peopleWithFrustration(focussedTeam, genius).length" class="bg-red-100 text-red-700 w-6 h-6 rounded items-center justify-center inline-flex"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="border-t border-gray-100"></div>
+        <!-- list of people with geniuses -->
+        <div class="space-y-2">
+          <template x-for="person in peopleInTeam()" hidden>
+            <div class="flex space-x-4 items-center">
+              <img :src="person.img" class="h-8 w-8 rounded-full">
+              <a
+                @click.prevent="setFocussedPerson(person)"
+                x-text="person.name"
+                class="w-48 truncate"
+                href="#"
+              ></a>
+              <div class="flex space-x-2">
+                <template x-for="genius in geniusSet" hidden>
+                  <a
+                    @click.stop="setFocussedGenius(genius)"
+                    x-text="genius[0]"
+                    class="rounded-md w-6 h-6 text-center"
+                    :class="{
+                      'text-green-700 bg-green-100': person.geniuses().includes(genius),
+                      'text-gray-700 bg-gray-100': person.competencies().includes(genius),
+                      'text-red-700 bg-red-100': person.frustrations().includes(genius),
+                    }"
+                    href="#"
+                  ></a>
+                </template>
+              </div>
+              </div>
+          </template>
+        </div>
+      </div>
+    </template>
+
+  </div>
+</body>
+</html>
