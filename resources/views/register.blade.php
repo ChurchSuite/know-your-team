@@ -19,7 +19,7 @@
 				<x-field-checkbox label="Working Genius" id="tests_working_genius" name="tests[]" suffix="stuff" value="working_genius"/>
 				<x-field-checkbox label="Myers Briggs" id="tests_myers_briggs" name="tests[]" suffix="stuff" value="myers_briggs"/>
 			</x-fieldset>
-			<x-button-post>Set it up!</x-button-post>
+			<x-button-submit>Set it up!</x-button-submit>
 		</x-form>
 	</x-form-wrapper>
 </x-page-section>
