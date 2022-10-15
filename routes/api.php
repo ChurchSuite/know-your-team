@@ -60,6 +60,18 @@ Route::post('/organisation', function(Request $request) {
     return redirect('/organisation/'.$organisation->uuid);
 });
 
+// PUT /api/organisation/:uuid
+Route::put('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
+    $request->validate([
+        'name' => 'required|string|max:50',
+    ]);
+error_log(print_r($request->name, true));
+	$organisation->name = $request->name;
+
+    // save to the database
+	$organisation->save();
+});
+
 // POST /api/team
 Route::post('/team', function(Request $request) {
     $request->validate([
