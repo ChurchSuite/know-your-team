@@ -5,6 +5,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 /*
@@ -48,9 +49,6 @@ Route::post('/organisation', function(Request $request) {
 		'profile_picture' => $request->profile_picture ?? '',
 	]);
 
-    // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $organisation->uuid)->first();
-
     // fill guarded fields
 	$user->organisation_id = $organisation->id;
 	$user->password = 'password';
@@ -64,18 +62,14 @@ Route::post('/organisation', function(Request $request) {
 Route::post('/team', function(Request $request) {
     $request->validate([
         'name' => 'required|string|max:50',
-        'organisation_uuid' => 'required|uuid',
     ]);
 
 	$team = new Team([
 		'name' => $request->name,
 	]);
 
-    // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $request->organisation_uuid)->first();
-
     // fill guarded fields
-	$team->organisation_id = $organisation->id;
+	$team->organisation_id = Session::get('organisation_id');
 
     // save to the database
 	$team->save();
@@ -97,7 +91,6 @@ Route::post('/user', function(Request $request) {
         'last_name' => 'required|string|max:50',
         'email' => 'required|email',
         'job' => 'required|string|max:50',
-        'organisation_uuid' => 'required|uuid',
         'profile_picture' => 'required|url',
     ]);
 
@@ -109,11 +102,8 @@ Route::post('/user', function(Request $request) {
 		'profile_picture' => $request->profile_picture,
 	]);
 
-    // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $request->organisation_uuid)->first();
-
     // fill guarded fields
-	$user->organisation_id = $organisation->id;
+	$user->organisation_id = Session::get('organisation_id');
 	$user->password = 'password';
 	$user->uuid = Str::uuid();
 
