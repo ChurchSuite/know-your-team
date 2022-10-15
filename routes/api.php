@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Organisation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::post('/user', function(Request $request) {
         'last_name' => 'required|string|max:50',
         'email' => 'required|email',
         'job' => 'required|string|max:50',
-        'organisation_id' => 'required|uuid',
+        'organisation_uuid' => 'required|uuid',
     ]);
 
 	$user = new User([
@@ -33,11 +34,11 @@ Route::post('/user', function(Request $request) {
 		'job' => $request->email,
 	]);
 
-    // get the organisation id from the UUID here
-    $organisation_id = 2;
+    // get the organisation id from the UUID
+    $organisation = Organisation::where('uuid', $request->organisation_uuid)->get();
 
     // fill guarded fields
-	$user->organisation_id = $organisation_id;
+	$user->organisation_id = $organisation->id;
 	$user->password = 'password';
 	$user->uuid = Str::uuid();
 
