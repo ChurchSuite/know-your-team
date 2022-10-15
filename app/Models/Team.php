@@ -20,4 +20,9 @@ class Team extends Model
 		'organisation_id',
 	];
 
+	public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'team_members');
+    }
+
 }

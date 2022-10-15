@@ -25,4 +25,9 @@ class User extends Model
         'uuid',
     ];
 
+    public function teams()
+    {
+        return $this->belongsToMany('App\Models\Team', 'team_members');
+    }
+
 }
