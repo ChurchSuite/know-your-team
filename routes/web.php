@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Organisation;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -43,7 +44,10 @@ Route::get('/settings', function() {
 	]);
 });
 
-Route::get('/team', fn() => view('team'));
+Route::get('/team', fn() => view('team.create'));
+Route::get('/team/{team:id}', function(Request $request, Team $team) {
+	return view('team.update', ['team' => $team]);
+});
 
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
 	Session::put('organisation_id', $organisation->id);

@@ -135,6 +135,20 @@ Route::post('/team', function(Request $request) {
 	return response()->json(['redirect' => '/']);
 });
 
+// PUT /api/team/:uuid
+Route::put('/team/{team:id}', function(Request $request, Team $team) {
+    $request->validate([
+		'name' => 'required|string|max:50',
+    ]);
+
+	$team->name = $request->name;
+
+    // save to the database
+	$team->save();
+
+	return response()->json(['redirect' => '/']);
+});
+
 // POST /api/submit
 Route::post('/submit', function(Request $request) {
     $request->validate([

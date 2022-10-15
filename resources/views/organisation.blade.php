@@ -58,12 +58,15 @@
 	<x-dashboard-widget-wrapper>
 		<x-dashboard-widget title="Teams">
 			@foreach($organisation->teams as $team)
-				<div class="flex w-full items-center justify-between space-x-6 p-6">
-					<div class="flex-1 truncate">
-						<div class="flex items-center space-x-3">
-							<h3 class="truncate text-sm font-medium text-gray-900">{{ $team->name }}</h3>
+				<div class="relative">
+					<div class="flex w-full items-center justify-between space-x-6 p-6">
+						<div class="flex-1 truncate">
+							<div class="flex items-center space-x-3">
+								<h3 class="truncate text-sm font-medium text-gray-900">{{ $team->name }}</h3>
+							</div>
 						</div>
 					</div>
+					<a href="/team/{{ $team->id }}" class="absolute inset-0"></a>
 				</div>
 			@endforeach
 			<x-slot name="actions">
