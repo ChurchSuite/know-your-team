@@ -49,7 +49,7 @@ Route::post('/organisation', function(Request $request) {
 	]);
 
     // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $organisation->uuid)->get();
+    $organisation = Organisation::where('uuid', $organisation->uuid)->first();
 
     // fill guarded fields
 	$user->organisation_id = $organisation->id;
@@ -72,7 +72,7 @@ Route::post('/team', function(Request $request) {
 	]);
 
     // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $request->organisation_uuid)->get();
+    $organisation = Organisation::where('uuid', $request->organisation_uuid)->first();
 
     // fill guarded fields
 	$team->organisation_id = $organisation->id;
@@ -110,7 +110,7 @@ Route::post('/user', function(Request $request) {
 	]);
 
     // get the organisation id from the UUID
-    $organisation = Organisation::where('uuid', $request->organisation_uuid)->get();
+    $organisation = Organisation::where('uuid', $request->organisation_uuid)->first();
 
     // fill guarded fields
 	$user->organisation_id = $organisation->id;
