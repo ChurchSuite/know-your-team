@@ -32,9 +32,10 @@
 			<div class="relative z-20">
 				<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 sm:py-4 md:justify-start md:space-x-10 lg:px-8">
 					<div>
-						<a href="/" class="flex">
-							<span class="sr-only">Your Company</span>
+						<a href="/" class="flex space-x-3">
+							<span class="sr-only">Know Your Team</span>
 							<img class="h-8 w-auto sm:h-10" src="/logo.svg" alt="">
+							<div class="flex items-center"><span class="text-md font-black text-gray-500 tracking-tighter">Know Your Team</span></div>
 						</a>
 					</div>
 					<div class="-my-2 -mr-2 md:hidden">
@@ -57,7 +58,7 @@
 					<div class="px-5 pt-5 pb-6 sm:pb-8">
 						<div class="flex items-center justify-between">
 						<div>
-							<img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+							<img class="h-8 w-auto" src="logo.svg" alt="Know Your Team">
 						</div>
 						<div class="-mr-2">
 							<button x-on:click="menuOpen = false" type="button" class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
