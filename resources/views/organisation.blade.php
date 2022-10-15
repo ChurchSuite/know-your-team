@@ -42,14 +42,13 @@
 			@endforeach
 			<x-slot name="actions">
 				<span class="isolate inline-flex rounded-md shadow-sm">
-					<button type="button" class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+					<a href="/user" class="first:rounded-l-md last:rounded-r-md relative inline-flex items-center border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 space-x-2">
 						<svg width="16" height="16" fill="none" viewBox="0 0 24 24">
 							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
 							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
 						</svg>
-						Member
-					</button>
-					<button type="button" class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">12k</button>
+						User
+					</a>
 				</span>
 			</x-slot>
 		</x-dashboard-widget>
@@ -68,7 +67,22 @@
 				</div>
 			@endforeach
 			<x-slot name="actions">
-				Actions
+				<span class="isolate inline-flex rounded-md shadow-sm">
+					<a href="/team" class="first:rounded-l-md last:rounded-r-md relative inline-flex items-center border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 space-x-2">
+						<svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
+						</svg>
+						Team
+					</a>
+					<a href="/add_to_team" class="first:rounded-l-md last:rounded-r-md relative -ml-px inline-flex items-center border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+						<svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5.75V18.25"></path>
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.25 12L5.75 12"></path>
+						</svg>
+						Team User
+					</a>
+				</span>
 			</x-slot>
 		</x-dashboard-widget>
 	</x-dashboard-widget-wrapper>
