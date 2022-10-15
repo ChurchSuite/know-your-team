@@ -6,12 +6,15 @@
 	<x-dashboard-widget-wrapper>
 		<x-dashboard-widget title="Test Results">
 			@foreach($organisation->tests as $test)
-				<div class="flex w-full items-center justify-between space-x-6 p-6">
-					<div class="flex-1 truncate">
-						<div class="flex items-center space-x-3">
-							<h3 class="truncate text-sm font-medium text-gray-900">{{ $test->name() }}</h3>
+				<div class="relative">
+					<div class="flex w-full items-center justify-between space-x-6 p-6">
+						<div class="flex-1 truncate">
+							<div class="flex items-center space-x-3">
+								<h3 class="truncate text-sm font-medium text-gray-900">{{ $test->name() }}</h3>
+							</div>
 						</div>
 					</div>
+					<a href="/test/{{ $test->test_identifier }}" class="absolute inset-0"></a>
 				</div>
 			@endforeach
 		</x-dashboard-widget>
