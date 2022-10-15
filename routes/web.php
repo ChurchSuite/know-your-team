@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 Route::get('/', fn() => view('home'));
 Route::get('/register', fn() => view('register'));
-Route::get('/member', fn() => view('member'));
+Route::get('/user', fn() => view('user'));
 Route::get('/team', fn() => view('team'));
 Route::get('/data', fn() => view('data'));
 
