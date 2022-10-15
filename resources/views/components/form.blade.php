@@ -14,7 +14,11 @@
 
 			fetch($el.action, {
 				body: fetchData,
-				method: $el.method
+				method: $el.method,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					'Accept': 'application/json',
+				}
 			}).then(function (response) {
 				if (response.ok) {
 					return response.json();
