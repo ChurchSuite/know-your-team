@@ -29,6 +29,14 @@ Route::get('/', function(Request $request) {
 });
 Route::get('/register', fn() => view('register'));
 Route::get('/user', fn() => view('user'));
+Route::get('/settings', function() {
+	$organisationId = Session::get('organisation_id');
+
+	return view('settings', [
+		'organisation' => Organisation::where(['id' => $organisationId])->first(),
+	]);
+});
+
 Route::get('/team', fn() => view('team'));
 Route::get('/data', fn() => view('data'));
 
