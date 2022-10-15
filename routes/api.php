@@ -22,6 +22,11 @@ use Illuminate\Support\Str;
 Route::post('/organisation', function(Request $request) {
     $request->validate([
         'name' => 'required|string|max:50',
+        'first_name' => 'required|string|max:50',
+        'last_name' => 'required|string|max:50',
+        'email' => 'required|email',
+        'job' => 'required|string|max:50',
+        'profile_picture' => 'required|url',
     ]);
 
 	$organisation = new Organisation([
@@ -33,6 +38,26 @@ Route::post('/organisation', function(Request $request) {
 
     // save to the database
 	$organisation->save();
+
+    // now create the user
+    $user = new User([
+		'first_name' => $request->first_name,
+		'last_name' => $request->last_name,
+		'email' => $request->email,
+		'job' => $request->job,
+		'profile_picture' => $request->profile_picture,
+	]);
+
+    // get the organisation id from the UUID
+    $organisation = Organisation::where('uuid', $organisation->uuid)->get();
+
+    // fill guarded fields
+	$user->organisation_id = $organisation->id;
+	$user->password = 'password';
+	$user->uuid = Str::uuid();
+
+    // save to the database
+	$user->save();
 });
 
 // POST /api/team

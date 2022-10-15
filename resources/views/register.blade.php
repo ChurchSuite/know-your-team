@@ -7,7 +7,7 @@
 	</x-page-title>
 
 	<x-form-wrapper>
-		<x-form action="/api/register">
+		<x-form action="/api/organisation">
 			<x-field-text label="Organisation" name="name"/>
 			<x-form-divider>About you</x-form-divider>
 			<x-field-name firstnameName="first_name" lastnameName="last_name"/>
