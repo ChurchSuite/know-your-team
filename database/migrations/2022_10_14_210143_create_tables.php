@@ -32,7 +32,7 @@ return new class extends Migration
 
         Schema::create('organisation_tests', function (Blueprint $table) {
             $table->integer('organisation_id');
-            $table->string('test_identifier');
+            $table->enum('test_identifier', ['enneagram', 'working_genius', 'myers_briggs']);
         });
 
         Schema::create('teams', function (Blueprint $table) {
@@ -43,7 +43,7 @@ return new class extends Migration
 
         Schema::create('test_results', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->string('test_identifier');
+            $table->enum('test_identifier', ['enneagram', 'working_genius', 'myers_briggs']);
             $table->json('result');
         });
 
