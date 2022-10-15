@@ -24,3 +24,8 @@ Route::get('/data', fn() => view('data'));
 Route::get('/organisation/{organisation:uuid}', function(Request $request, Organisation $organisation) {
 	return $organisation->name;
 });
+
+// hacky endpoint to list organisations for time being
+Route::get('/organisations', function() {
+	return view('organisations', ['organisations' => Organisation::all()]);
+});
