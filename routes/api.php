@@ -26,7 +26,7 @@ Route::post('/organisation', function(Request $request) {
         'last_name' => 'required|string|max:50',
         'email' => 'required|email',
         'job' => 'required|string|max:50',
-        'profile_picture' => 'required|url',
+        'profile_picture' => 'url',
     ]);
 
 	$organisation = new Organisation([
@@ -45,7 +45,7 @@ Route::post('/organisation', function(Request $request) {
 		'last_name' => $request->last_name,
 		'email' => $request->email,
 		'job' => $request->job,
-		'profile_picture' => $request->profile_picture,
+		'profile_picture' => $request->profile_picture ?? '',
 	]);
 
     // get the organisation id from the UUID
